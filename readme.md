@@ -8,7 +8,7 @@ Copy the `lol-uikit` folder into your project. Now go to your HTML and make sure
 
 # Wrappers
 
-All these are wrappers to another already existing HTML control, so any attribute specified in the `lol-` tag will be passed to the actual control. THis only happens at load time so if you want to modify an attribute later, make sure you edit the actual control. 
+All these are wrappers to another already existing HTML control, so any attribute specified in the `lol-` tag will be passed to the actual control. This only happens at load time so if you want to modify an attribute later, make sure you edit the actual control. 
 
 ## Label
 
