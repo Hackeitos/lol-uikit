@@ -6,6 +6,10 @@ Copy the `lol-uikit` folder into your project. Now go to your HTML and make sure
 * Add `lol-uikit.js` script to `<body>` with `type="module"`.
 * Add `lol-uikit.css` stylesheet to `<head>`.
 
+# Body
+
+* You can add class `lol-body` to stylize the background.
+
 # Wrappers
 
 All these are wrappers to another already existing HTML control, so any attribute specified in the `lol-` tag will be passed to the actual control. This only happens at load time so if you want to modify an attribute later, make sure you edit the actual control. 
