@@ -1,5 +1,3 @@
-#IMPORTANT: NOT FINISHED YET. I'LL PUSH ALL FILES AND UPDATE DOCUMENTATION IN LESS THAN A WEEK.
-
 # lol-uikit
 Very basic/limited League of Legends-like UI theme for HTML implementation using Bootstrap and Jquery.
 
