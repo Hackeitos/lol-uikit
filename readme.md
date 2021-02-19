@@ -59,7 +59,8 @@ All these are controls I made from scratch, so there is no actual HTML control d
 ```
 
 * Each div is an option.
-* Dropdown will initialize with the text specified in the `value` attribute. Once the user chooses an option the `value` attribute will be set to the `value` attribute of the selected element and the onchange event will be triggered.
+* Dropdown will initialize with the text specified in the `value` attribute.
+* When the user chooses an option the `value` attribute of `<lol-dropdown>` will be set to the `value` attribute of the selected element and the onchange event will be triggered.
 * Options can be disabled.
 
 ## Checkbox
@@ -81,5 +82,6 @@ All these are controls I made from scratch, so there is no actual HTML control d
 
 * Each div is an option.
 * Initially selected radiobutton will be the one which `value` attribute equals `lol-radiobuttons`'s `value`.
+* When user selects an option `<lol-radiobuttons>`'s `value` will be set to the `value` attribute of the selected item and `onchange` event will be triggered.
 * Options can be disabled.
 
