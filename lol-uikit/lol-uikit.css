@@ -1,0 +1,398 @@
+/* @import url(./lib/bootstrap.min.css); */
+
+@font-face {
+    font-family: "beaufort-bold";
+    src: url(./font/Beaufort-Bold.ttf);
+}
+
+@font-face {
+    font-family: "beaufort-regular";
+    src: url(./font/Beaufort-Regular.ttf);
+}
+
+@font-face {
+    font-family: "beaufort-italic";
+    src: url(./font/Beaufort-Italic.ttf);
+}
+
+:root {
+    --background: url(./img/backdrop-magic.png);
+    --up-down-arrow: url(./img/up-down-arrow.png);
+    --up-down-arrow-disabled: url(./img/up-down-arrow-disabled.png);
+    --checkbox-unchecked: url(./img/checkbox-unchecked.png);
+    --checkbox-unchecked-disabled: url(./img/checkbox-unchecked-disabled.png);
+    --checkbox-unchecked-hover: url(./img/checkbox-unchecked-hover.png);
+    --checkbox-checked: url(./img/checkbox-checked.png);
+    --checkbox-checked-disabled: url(./img/checkbox-checked-disabled.png);
+    --checkbox-checked-hover: url(./img/checkbox-checked-hover.png);
+    --radio-unchecked: url(./img/radio-unchecked.png);
+    --radio-unchecked-hover: url(./img/radio-unchecked-hover.png);
+    --radio-unchecked-click: url(./img/radio-unchecked-click.png);
+    --radio-unchecked-disabled: url(./img/radio-unchecked-disabled.png);
+    --radio-checked: url(./img/radio-checked.png);
+    --radio-checked-hover: url(./img/radio-checked-hover.png);
+    --radio-checked-click: url(./img/radio-checked-click.png);
+    --radio-checked-disabled: url(./img/radio-checked-disabled.png);
+}
+
+body.lol-body {
+    background: var(--background);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 5px;
+}
+
+
+/*
+    TEXTBOXES
+*/
+
+lol-textbox input {
+    display: inline-flex;
+    border-radius: 0;
+    padding: 10px;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(#785A28, #785A28);
+    background: #000306;
+    color: #EFE5D1;
+    font-family: "beaufort-regular";
+    outline: none;
+}
+
+lol-textbox input::placeholder {
+    color: #757575;
+}
+
+lol-textbox input:focus {
+    border-image-source: linear-gradient(#795B29, #C6A86D);
+    background: linear-gradient(#060E16, #151C22);
+}
+
+lol-textbox input:disabled {
+    color: #3C3C41;
+    background: #1E2328;
+    border-image-source: linear-gradient(#5C5B57, #5C5B57);
+}
+
+
+/*
+    BUTTONS
+*/
+
+lol-button {
+    display: inline-flex;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid;
+    border-image-slice: 1;
+    font-family: "beaufort-bold";
+    background-color: #1E2328;
+    border-image-source: linear-gradient(#C4A566, #997530, #87704C);
+    color: #CDBE91;
+    outline: none;
+}
+
+lol-button:hover {
+    border-image-source: linear-gradient(#EBE1CC, #C5993E);
+    color: #F0E6D2;
+    background: linear-gradient(#1F2428, #393934);
+}
+
+lol-button:active {
+    border-image-source: linear-gradient(#5C5B57, #5C5B57);
+    background: #1E2328;
+    color: #5C5B57;
+}
+
+lol-button.disabled {
+    border-image-source: linear-gradient(#5C5B57, #5C5B57);
+    background: #1E2328;
+    color: #3C3C41;
+    cursor: default;
+}
+
+lol-transparent-button {
+    display: inline-flex;
+    background: transparent;
+    color: #C8AA6E;
+    font-family: "beaufort-bold";
+    user-select: none;
+    cursor: pointer;
+}
+
+lol-transparent-button:hover {
+    color: #F0E6D2;
+}
+
+lol-transparent-button:active {
+    color: #463714;
+}
+
+lol-transparent-button.disabled {
+    color: #5C5B57;
+    cursor: default !important;
+}
+
+
+/*
+    DROPDOWNS
+*/
+
+lol-dropdown {
+    display: inline-flex;
+    background: #0F171D;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(#C5A463, #6D5926);
+    color: #A09B8C;
+    cursor: pointer;
+    font-family: "beaufort-regular";
+    user-select: none;
+    position: relative;
+    align-items: center;
+    padding: 5px;
+}
+
+lol-dropdown:hover {
+    background: linear-gradient(#10171E, #2C2E2A);
+    border-image-source: linear-gradient(#F0E5D0, #C89C3E);
+}
+
+lol-dropdown.open {
+    border-image-source: linear-gradient(#463714, #463714);
+    color: #463714;
+    background: #0F171D;
+}
+
+lol-dropdown.disabled {
+    cursor: default;
+    color: #3C3C41;
+    background: #1E2328;
+    border-image-source: linear-gradient(#5C5B57, #5C5B57);
+}
+
+lol-dropdown:focus {
+    outline: none;
+}
+
+lol-dropdown>img {
+    content: var(--up-down-arrow);
+    margin-left: 5px;
+}
+
+lol-dropdown.disabled>img {
+    content: var(--up-down-arrow-disabled);
+}
+
+lol-dropdown>options-container {
+    position: absolute;
+    top: 100%;
+    left: -2px;
+    width: 100%;
+    right: 0;
+    z-index: 99;
+    color: white;
+    display: none;
+    background: #010A13;
+    width: inherit;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(#473814, #695625);
+    overflow-y: auto;
+}
+
+lol-dropdown.open>options-container {
+    display: block !important;
+}
+
+lol-dropdown>options-container>option {
+    padding: 2px;
+    border: 1px solid #1F2123;
+    color: #C8BA8E;
+    display: block;
+    overflow: hidden;
+}
+
+lol-dropdown>options-container>option:hover {
+    background-color: #1E2328;
+    color: #EAE1CD;
+}
+
+
+/*
+    CHECKBOXES
+*/
+
+lol-checkbox {
+    cursor: pointer;
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    user-select: none;
+}
+
+lol-checkbox.disabled {
+    cursor: default;
+}
+
+lol-checkbox>span {
+    display: inline-block;
+    color: #918D81;
+    font-family: "beaufort-regular";
+    height: 100%;
+}
+
+lol-checkbox:hover>span {
+    color: #E5DBC9;
+}
+
+lol-checkbox.disabled>span {
+    color: #3C3C41 !important;
+}
+
+lol-checkbox>img {
+    height: 14px;
+    width: 14px;
+    margin-right: 3px;
+    content: var(--checkbox-unchecked);
+    vertical-align: middle;
+}
+
+lol-checkbox.checked>img {
+    content: var(--checkbox-checked);
+}
+
+lol-checkbox.checked.disabled>img {
+    content: var(--checkbox-checked-disabled) !important;
+}
+
+lol-checkbox.disabled>img {
+    content: var(--checkbox-unchecked-disabled) !important;
+}
+
+lol-checkbox:hover>img {
+    content: var(--checkbox-unchecked-hover);
+}
+
+lol-checkbox.checked:hover>img {
+    content: var(--checkbox-checked-hover);
+}
+
+
+/*
+    RADIO BUTTONS
+*/
+
+lol-radiobuttons {
+    display: block;
+    font-family: "beaufort-regular";
+    color: #8C897C;
+    user-select: none;
+}
+
+lol-radiobuttons>li {
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    user-select: none;
+    margin-top: 2px;
+}
+
+lol-radiobuttons>li.disabled {
+    cursor: default;
+    color: #5C5B57 !important;
+}
+
+lol-radiobuttons>li:hover {
+    color: #E5DBC9;
+}
+
+lol-radiobuttons>li.checked {
+    color: #E5DBC9;
+}
+
+lol-radiobuttons>li>img {
+    height: 14px;
+    width: 14px;
+    margin-right: 5px;
+    content: var(--radio-unchecked);
+}
+
+lol-radiobuttons>li.disabled>img {
+    content: var(--radio-unchecked-disabled) !important;
+    cursor: default;
+}
+
+lol-radiobuttons>li:hover>img {
+    content: var(--radio-unchecked-hover);
+}
+
+lol-radiobuttons>li:active>img {
+    content: var(--radio-unchecked-click);
+}
+
+lol-radiobuttons>li.checked>img {
+    content: var(--radio-checked);
+}
+
+lol-radiobuttons>li.checked.disabled>img {
+    content: var(--radio-checked-disabled) !important;
+}
+
+lol-radiobuttons>li.checked:hover>img {
+    content: var(--radio-checked-hover);
+}
+
+lol-radiobuttons>li.checked:active>img {
+    content: var(--radio-checked-click);
+}
+
+
+/*
+*   SCROLLBARS
+*/
+
+.lol-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.lol-scrollbar::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+.lol-scrollbar::-webkit-scrollbar-thumb {
+    background: #1E2328;
+    border-radius: 10px;
+}
+
+.lol-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: #785A28;
+}
+
+.lol-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #CDBE91;
+}
+
+.lol-scrollbar::-webkit-scrollbar-thumb:active {
+    background: #463714;
+}
+
+
+/*
+    LABELS
+*/
+
+lol-label {
+    display: inline-flex;
+    font-family: "beaufort-regular";
+    color: #8C897C;
+}
