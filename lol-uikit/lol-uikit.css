@@ -33,6 +33,10 @@
     --radio-checked-hover: url(./img/radio-checked-hover.png);
     --radio-checked-click: url(./img/radio-checked-click.png);
     --radio-checked-disabled: url(./img/radio-checked-disabled.png);
+    --seekbar: url(./img/seekbar.png);
+    --seekbar-hover: url(./img/seekbar-hover.png);
+    --seekbar-click: url(./img/seekbar-click.png);
+    --seekbar-disabled: url(./img/seekbar-disabled.png);
 }
 
 body.lol-body {
@@ -50,10 +54,10 @@ body.lol-body {
     TEXTBOXES
 */
 
-lol-textbox input {
+.lol-textbox {
     display: inline-flex;
     border-radius: 0;
-    padding: 10px;
+    padding: 5px;
     border: 2px solid;
     border-image-slice: 1;
     border-image-source: linear-gradient(#785A28, #785A28);
@@ -63,19 +67,19 @@ lol-textbox input {
     outline: none;
 }
 
-lol-textbox input::placeholder {
+.lol-textbox::placeholder {
     color: #757575;
 }
 
-lol-textbox input:focus {
+.lol-textbox:focus {
     border-image-source: linear-gradient(#795B29, #C6A86D);
     background: linear-gradient(#060E16, #151C22);
 }
 
-lol-textbox input:disabled {
-    color: #3C3C41;
-    background: #1E2328;
-    border-image-source: linear-gradient(#5C5B57, #5C5B57);
+.lol-textbox:disabled {
+    color: #3C3C41 !important;
+    background: #1E2328 !important;
+    border-image-source: linear-gradient(#5C5B57, #5C5B57) !important;
 }
 
 
@@ -307,7 +311,8 @@ lol-radiobuttons>li {
     margin-top: 2px;
 }
 
-lol-radiobuttons>li.disabled {
+lol-radiobuttons>li.disabled,
+lol-radiobuttons.disabled>li {
     cursor: default;
     color: #5C5B57 !important;
 }
@@ -327,7 +332,8 @@ lol-radiobuttons>li>img {
     content: var(--radio-unchecked);
 }
 
-lol-radiobuttons>li.disabled>img {
+lol-radiobuttons>li.disabled>img,
+lol-radiobuttons.disabled>li>img {
     content: var(--radio-unchecked-disabled) !important;
     cursor: default;
 }
@@ -344,7 +350,8 @@ lol-radiobuttons>li.checked>img {
     content: var(--radio-checked);
 }
 
-lol-radiobuttons>li.checked.disabled>img {
+lol-radiobuttons>li.checked.disabled>img,
+lol-radiobuttons.disabled>li.checked>img {
     content: var(--radio-checked-disabled) !important;
 }
 
@@ -384,6 +391,78 @@ lol-radiobuttons>li.checked:active>img {
 
 .lol-scrollbar::-webkit-scrollbar-thumb:active {
     background: #463714;
+}
+
+
+/*
+    PROGRESSBARS
+*/
+
+lol-progressbar {
+    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    height: 25px !important;
+    background: #1E2328;
+    --hue: 0;
+    --saturation: 100%;
+    border: 2px solid #3C3C41;
+}
+
+lol-progressbar>span {
+    display: none;
+    position: absolute;
+    font-family: "beaufort-bold";
+}
+
+lol-progressbar>video {
+    filter: hue-rotate(var(--hue)) saturate(var(--saturation));
+    -webkit-filter: hue-rotate(var(--hue)) saturate(var(--saturation));
+}
+
+lol-progressbar.percentage>span {
+    display: inline-flex !important;
+}
+
+lol-progressbar>video.tip {
+    position: absolute;
+    top: -12px;
+    height: 49px;
+}
+
+lol-progressbar>video.back {
+    height: 31px;
+    /* margin-left: -10px; */
+    margin-top: -4px;
+}
+
+
+/*
+    SEEKBARS
+*/
+
+lol-seekbar {
+    display: inline-flex;
+    user-select: none;
+    position: relative;
+    width: 300px;
+    outline: none;
+}
+
+lol-seekbar>div {
+    width: calc(100% - 32px);
+    height: 2px;
+    background: linear-gradient(to right, #463714, #C4A566);
+    position: absolute;
+    top: calc(50% - 1px);
+    z-index: 0;
+    left: 16px;
+}
+
+lol-seekbar>img {
+    width: 32px;
+    height: 32px;
+    z-index: 1;
 }
 
 

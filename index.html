@@ -12,7 +12,7 @@
 <body class="lol-body">
 
     <div style="width: 500px;">
-        <lol-button>HOLA</lol-button>
+        <lol-button onclick="pene();">HOLA</lol-button>
         <lol-button class="disabled">HOLA</lol-button>
 
         <hr>
@@ -43,15 +43,35 @@
 
         <hr>
 
-        <lol-radiobuttons value="1">
+        <lol-radiobuttons value="1" class="disabled">
             <li value="1">UNO</li>
             <li value="2">DOH</li>
             <li value="3">TREH</li>
             <li value="4">CUATROH</li>
         </lol-radiobuttons>
+
+        <hr>
+
+        <lol-textbox>
+            <input class="lol-textbox" type="text" placeholder="XD">
+            <input class="lol-textbox" type="text" placeholder="XD" disabled>
+        </lol-textbox>
+
+        <hr>
+
+        <lol-progressbar class="percentage" style="width: 300px;" value="0" max="1000"></lol-progressbar>
+
+        <hr>
+
+        <lol-seekbar>
+            <div></div>
+            <img src="./lol-uikit/img/seekbar.png">
+        </lol-seekbar>
+
     </div>
 
-    <script src="./lol-uikit/lol-uikit.js" type="module"></script>
+    <script src="./lol-uikit/lol-uikit.js" type="module" id="lol-script"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
