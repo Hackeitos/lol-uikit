@@ -62,8 +62,6 @@ export default class LolUiKit {
 
             let initialX;
 
-            
-
             let mouseMove = (event) => {
                 event.stopImmediatePropagation();
                 let max = seekbar.width() - 32;
@@ -91,7 +89,7 @@ export default class LolUiKit {
 
 
 
-        $("lol-button, lol-transparent-button").each(function () {
+        $("lol-button, lol-transparent-button, lol-round-button").each(function () {
             let button = $(this);
             forceTabIndex(button);
             button.on("click", (e) => { if (button.hasClass("disabled")) e.stopImmediatePropagation(); });

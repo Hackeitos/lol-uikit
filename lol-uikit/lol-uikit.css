@@ -161,6 +161,7 @@ lol-round-button {
     width: 32px;
     height: 32px;
     font-family: "beaufort-bold";
+    outline: none;
 }
 
 lol-round-button:hover {
@@ -476,7 +477,6 @@ lol-progressbar>video.tip {
 
 lol-progressbar>video.back {
     height: 31px;
-    /* margin-left: -10px; */
     margin-top: -4px;
 }
 
