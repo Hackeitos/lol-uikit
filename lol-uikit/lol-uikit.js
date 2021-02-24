@@ -1,4 +1,3 @@
-import "./lib/jquery.js";
 import "./lib/attrchange.js";
 window.$ = window.jQuery = jQuery;
 
@@ -57,11 +56,13 @@ export default class LolUiKit {
 
         $("lol-seekbar").each(function () {
             let seekbar = $(this);
-            let img = $(this).children("div.thumb");
+            let img = seekbar.children("div.thumb");
 
             forceTabIndex(seekbar);
 
             let initialX;
+
+            
 
             let mouseMove = (event) => {
                 event.stopImmediatePropagation();
@@ -223,8 +224,7 @@ export default class LolUiKit {
 
 
             let updateProgressBar = async function (percentage = null) {
-                console.log(percentage);
-                //percentage = percentage || progressbar.attr("value");
+                percentage = percentage || progressbar.attr("value");
                 if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 1) percentage = 0;
 
                 spanPercentage.html(parseInt(percentage * 100) + "%");
@@ -237,7 +237,7 @@ export default class LolUiKit {
 
             bindAttrs(progressbar, {
                 "style": (value) => updateProgressBar(),
-                "value": (value) => updateProgressBar(),
+                "value": (value) => updateProgressBar(value),
                 "hue": (value) => progressbar.css("--hue", value),
                 "saturation": (value) => progressbar.css("--saturation", value)
             });
