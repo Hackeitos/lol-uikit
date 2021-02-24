@@ -37,6 +37,10 @@
     --seekbar-hover: url(./img/seekbar-hover.png);
     --seekbar-click: url(./img/seekbar-click.png);
     --seekbar-disabled: url(./img/seekbar-disabled.png);
+    --round-button: url(./img/round-button.png);
+    --round-button-hover: url(./img/round-button-hover.png);
+    --round-button-click: url(./img/round-button-click.png);
+    --round-button-disabled: url(./img/round-button-disabled.png);
 }
 
 body.lol-body {
@@ -128,6 +132,7 @@ lol-transparent-button {
     font-family: "beaufort-bold";
     user-select: none;
     cursor: pointer;
+    outline: none;
 }
 
 lol-transparent-button:hover {
@@ -141,6 +146,43 @@ lol-transparent-button:active {
 lol-transparent-button.disabled {
     color: #5C5B57;
     cursor: default !important;
+}
+
+lol-round-button {
+    color: #CDBE91;
+    cursor: pointer;
+    background: var(--round-button);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-family: "beaufort-bold";
+}
+
+lol-round-button:hover {
+    color: #F0E6D2;
+    background: var(--round-button-hover);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+lol-round-button:active {
+    color: #785A28;
+    background: var(--round-button-click);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+lol-round-button.disabled {
+    color: #5C5B57;
+    cursor: default !important;
+    background: var(--round-button-disabled);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 
@@ -215,15 +257,15 @@ lol-dropdown.open>options-container {
     display: block !important;
 }
 
-lol-dropdown>options-container>option {
-    padding: 2px;
-    border: 1px solid #1F2123;
+lol-dropdown>options-container>li {
+    padding: 5px;
     color: #C8BA8E;
     display: block;
     overflow: hidden;
+    border: 1px solid #1F2123;
 }
 
-lol-dropdown>options-container>option:hover {
+lol-dropdown>options-container>li:hover {
     background-color: #1E2328;
     color: #EAE1CD;
 }
@@ -413,6 +455,8 @@ lol-progressbar>span {
     display: none;
     position: absolute;
     font-family: "beaufort-bold";
+    color: #F0E6D2;
+    text-shadow: 1px 1px #000000;
 }
 
 lol-progressbar>video {
@@ -449,7 +493,7 @@ lol-seekbar {
     outline: none;
 }
 
-lol-seekbar>div {
+lol-seekbar>div.line {
     width: calc(100% - 32px);
     height: 2px;
     background: linear-gradient(to right, #463714, #C4A566);
@@ -459,10 +503,34 @@ lol-seekbar>div {
     left: 16px;
 }
 
-lol-seekbar>img {
+lol-seekbar>div.thumb {
     width: 32px;
     height: 32px;
     z-index: 1;
+    border: 0px none;
+    background: var(--seekbar);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+lol-seekbar>div.thumb:hover {
+    background: var(--seekbar-hover);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+lol-seekbar>div.thumb:active {
+    background: var(--seekbar-click);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+lol-seekbar.disabled>div.thumb {
+    cursor: default;
+    background: var(--seekbar-disabled) !important;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 

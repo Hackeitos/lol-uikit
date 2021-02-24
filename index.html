@@ -28,22 +28,22 @@
         <hr>
 
         <lol-dropdown value="1" text="COCK">
-            <option value="1">UNO</option>
-            <option value="2">DOH</option>
-            <option value="3">TREH</option>
-            <option value="4">CUATROH</option>
+            <li value="1">UNO</li>
+            <li value="2">DOH</li>
+            <li value="3">TREH</li>
+            <li value="4">CUATROH</li>
         </lol-dropdown>
 
         <lol-dropdown class="disabled" value="1">
-            <option value="1">UNO</option>
-            <option value="2">DOH</option>
-            <option value="3">TREH</option>
-            <option value="4">CUATROH</option>
+            <li value="1">UNO</li>
+            <li value="2">DOH</li>
+            <li value="3">TREH</li>
+            <li value="4">CUATROH</li>
         </lol-dropdown>
 
         <hr>
 
-        <lol-radiobuttons value="1" class="disabled">
+        <lol-radiobuttons value="1" class="">
             <li value="1">UNO</li>
             <li value="2">DOH</li>
             <li value="3">TREH</li>
@@ -59,14 +59,18 @@
 
         <hr>
 
-        <lol-progressbar class="percentage" style="width: 300px;" value="0" max="1000"></lol-progressbar>
+        <lol-progressbar id="pb" class="percentage" style="width: 300px;" value="1"></lol-progressbar>
 
         <hr>
 
-        <lol-seekbar>
-            <div></div>
-            <img src="./lol-uikit/img/seekbar.png">
+        <lol-seekbar id="sb">
+            <div class="line"></div>
+            <div class="thumb"></div>
         </lol-seekbar>
+
+        <hr>
+
+        <lol-round-button>X</lol-round-button>
 
     </div>
 
