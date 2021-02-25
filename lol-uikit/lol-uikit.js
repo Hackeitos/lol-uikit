@@ -1,5 +1,4 @@
 import "./lib/attrchange.js";
-window.$ = window.jQuery = jQuery;
 
 let splitPath = $("#lol-script").first().attr("src").split("/");
 splitPath.pop();
@@ -29,7 +28,7 @@ function bindAttrs(element, callbacks) {
         //event.attributeName - Name of the attribute modified
         //event.oldValue      - Previous value of the modified attribute
         //event.newValue      - New value of the modified attribute
-        callback: function (event) {
+        callback: function(event) {
             let attrCallback = callbacks[event.attributeName];
             if (attrCallback) attrCallback(event.newValue);
         }
@@ -41,55 +40,36 @@ export default class LolUiKit {
 
     static init() {
 
-        console.log(root);
-        // WRAPPERS FOR ALREADY EXISTING CONTROLS: ///////////////////////////////////////////////////////////////////
+        // INITIALIZE FIRST THING ANIMATED BACKGROUND BECAUSE IT MOVES THINGS AROUND AND CAN LEAD TO BUGGY STUFF IF DONE LATER
 
 
 
 
-        /*$(".lol-textbox>input").each(function() {
-            
-        });*/
+        $(".lol-bg-animated").each(function() {
+            let element = $(this);
+            let content = element.html();
+            let container = $(document.createElement("div"));
+            let video = $(document.createElement("video"));
+            video.attr("src", root + "media/background-ambient.webm");
+            video.prop("autoplay", true);
+            video.prop("muted", true);
+            video.prop("loop", true);
 
+            container.html(content);
 
-
-
-        $("lol-seekbar").each(function () {
-            let seekbar = $(this);
-            let img = seekbar.children("div.thumb");
-
-            forceTabIndex(seekbar);
-
-            let initialX;
-
-            let mouseMove = (event) => {
-                event.stopImmediatePropagation();
-                let max = seekbar.width() - 32;
-                let newPos = parseInt(img.css("margin-left")) - initialX + event.offsetX;
-                if (newPos < 0) newPos = 0;
-                if (newPos > max) newPos = max;
-                img.css("margin-left", newPos + "px");
-                seekbar.trigger("change", newPos / max);
-            };
-
-            img.on("mousedown", (event) => {
-                initialX = event.clientX - parseInt(img.css("margin-left"));
-                img.on("mousemove", mouseMove);
-            });
-
-            img.on("mouseup", () => img.off("mousemove"));
-            seekbar.on("mouseleave", () => img.off("mousemove"));
+            element.empty();
+            element.prepend(video, container);
         });
 
 
 
 
-        // FULL CUSTOM CONTROLS: //////////////////////////////////////////////////////////////////////////////////
+        // CONTROLS: ///////////////////////////////////////////////////////////////////
 
 
 
 
-        $("lol-button, lol-transparent-button, lol-round-button").each(function () {
+        $("lol-button, lol-transparent-button, lol-round-button").each(function() {
             let button = $(this);
             forceTabIndex(button);
             button.on("click", (e) => { if (button.hasClass("disabled")) e.stopImmediatePropagation(); });
@@ -98,7 +78,7 @@ export default class LolUiKit {
 
 
 
-        $("lol-dropdown").each(function () {
+        $("lol-dropdown").each(function() {
             let dropdown = $(this);
 
             forceTabIndex(dropdown);
@@ -114,10 +94,10 @@ export default class LolUiKit {
             optionsContainer.addClass("lol-scrollbar");
             dropdown.append(optionsContainer);
 
-            dropdown.children("li").each(function () {
+            dropdown.children("li").each(function() {
                 let option = $(this);
 
-                option.on("click", function (event) {
+                option.on("click", function(event) {
                     event.stopImmediatePropagation();
                     dropdown.removeClass("open");
                     dropdown.attr("value", option.attr("value"));
@@ -126,11 +106,11 @@ export default class LolUiKit {
                 optionsContainer.append(option);
             });
 
-            dropdown.on("click", function () {
+            dropdown.on("click", function() {
                 if (!dropdown.hasClass("disabled")) dropdown.toggleClass("open");
             });
 
-            dropdown.on("focusout", function () {
+            dropdown.on("focusout", function() {
                 dropdown.removeClass("open");
             });
 
@@ -154,12 +134,12 @@ export default class LolUiKit {
 
 
 
-        $("lol-checkbox").each(function () {
+        $("lol-checkbox").each(function() {
             let checkbox = $(this);
 
             checkbox.html(`<img><span>${checkbox.html()}</span>`);
 
-            checkbox.on("click", function () {
+            checkbox.on("click", function() {
                 if (checkbox.hasClass("disabled")) return;
 
                 checkbox.toggleClass("checked");
@@ -170,14 +150,14 @@ export default class LolUiKit {
 
 
 
-        $("lol-radiobuttons").each(function () {
+        $("lol-radiobuttons").each(function() {
             let radiocontainer = $(this);
 
-            radiocontainer.children("li").each(function () {
+            radiocontainer.children("li").each(function() {
                 let option = $(this);
                 option.html(`<img><span>${$(this).html()}</span>`);
 
-                option.on("click", function () {
+                option.on("click", function() {
                     if (option.hasClass("disabled") || radiocontainer.hasClass("disabled")) return;
 
                     radiocontainer.children("li").removeClass("checked");
@@ -196,17 +176,17 @@ export default class LolUiKit {
         });
 
 
-        $("lol-progressbar").each(function () {
+        $("lol-progressbar").each(function() {
             let progressbar = $(this);
             progressbar.empty();
 
             let videoTip = $(document.createElement("video"));
             let videoBack = $(document.createElement("video"));
             let spanPercentage = $(document.createElement("span"));
-            progressbar.append(videoTip, videoBack, spanPercentage);
+            progressbar.append(videoBack, videoTip, spanPercentage);
 
             videoTip.addClass("tip");
-            videoTip.attr("src", root + "media/pb-tip.webm");
+            videoTip.attr("src", root + "media/pb-long-tip.webm");
             videoTip.prop("autoplay", true);
             videoTip.prop("muted", true);
             videoTip.prop("loop", true);
@@ -217,24 +197,22 @@ export default class LolUiKit {
             videoBack.prop("loop", true);
 
             spanPercentage.html("&ZeroWidthSpace;");
-            spanPercentage.css("margin-top", ((progressbar.height() - spanPercentage.height()) / 2));
+            //spanPercentage.css("margin-top", ((progressbar.height() - spanPercentage.height()) / 2));
 
 
 
-            let updateProgressBar = async function (percentage = null) {
+            let updateProgressBar = async function(percentage = null) {
                 percentage = percentage || progressbar.attr("value");
-                if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 1) percentage = 0;
+                percentage = percentage * 100;
+                if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 100) percentage = 0;
 
-                spanPercentage.html(parseInt(percentage * 100) + "%");
-                spanPercentage.css("margin-left", ((progressbar.width() - spanPercentage.width()) / 2));
-
-                videoTip.css("left", (progressbar.width() * percentage - videoTip.width() * 0.81) + "px");
-                videoBack.css("margin-left", (progressbar.width() * percentage - videoBack.width()) + "px");
+                spanPercentage.html(parseInt(percentage) + "%");
+                videoTip.css("left", percentage + "%");
+                videoBack.css("clip-path", `inset(0px ${100 - percentage}% 0px 0px)`);
             };
 
 
             bindAttrs(progressbar, {
-                "style": (value) => updateProgressBar(),
                 "value": (value) => updateProgressBar(value),
                 "hue": (value) => progressbar.css("--hue", value),
                 "saturation": (value) => progressbar.css("--saturation", value)
@@ -244,8 +222,13 @@ export default class LolUiKit {
             videoBack.on("loadeddata", () => updateProgressBar());
         });
 
+
+
+        // OTHERS: ///////////////////////////////////////////////////////////////////////////////////////////
+
+
     }
 
 }
 
-LolUiKit.init(); // YOU CAN COMMENT THIS LINE TO MANUALLY INITIALIZE ALL lol-* ITEMS BY YOURSELF
+LolUiKit.init() // YOU CAN COMMENT THIS LINE TO MANUALLY INITIALIZE LATER ALL lol-* ITEMS BY YOURSELF

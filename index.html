@@ -11,77 +11,76 @@
 
     <script src="./lol-uikit/lib/jquery.js"></script>
     <script src="./lol-uikit/lol-uikit.js" type="module" id="lol-script"></script>
-
+    <script src="https://kit.fontawesome.com/c606a53223.js" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
 </head>
 
-<body class="lol-body">
+<body>
 
-    <div style="width: 500px;">
-        <lol-button onclick="pene();">HOLA</lol-button>
-        <lol-button class="disabled">HOLA</lol-button>
+    <div class="lol-bg-animated">
+        <div style="width: 500px;">
+            <lol-button onclick="pene();">HOLA</lol-button>
+            <lol-button class="disabled">HOLA</lol-button>
 
-        <hr>
+            <hr>
 
-        <lol-transparent-button>HOLA</lol-transparent-button>
-        <lol-transparent-button class="disabled">HOLA</lol-transparent-button>
+            <lol-transparent-button>HOLA</lol-transparent-button>
+            <lol-transparent-button class="disabled">HOLA</lol-transparent-button>
 
-        <hr>
+            <hr>
 
-        <lol-checkbox>HOLA</lol-checkbox>
-        <lol-checkbox class="disabled">HOLA</lol-checkbox>
+            <lol-checkbox>HOLA</lol-checkbox>
+            <lol-checkbox class="disabled">HOLA</lol-checkbox>
 
-        <hr>
+            <hr>
 
-        <lol-dropdown value="1" text="COCK">
-            <li value="1">UNO</li>
-            <li value="2">DOH</li>
-            <li value="3">TREH</li>
-            <li value="4">CUATROH</li>
-        </lol-dropdown>
+            <lol-dropdown value="1" text="COCK">
+                <li value="1">UNO</li>
+                <li value="2">DOH</li>
+                <li value="3">TREH</li>
+                <li value="4">CUATROH</li>
+            </lol-dropdown>
 
-        <lol-dropdown class="disabled" value="1">
-            <li value="1">UNO</li>
-            <li value="2">DOH</li>
-            <li value="3">TREH</li>
-            <li value="4">CUATROH</li>
-        </lol-dropdown>
+            <lol-dropdown class="disabled" value="1">
+                <li value="1">UNO</li>
+                <li value="2">DOH</li>
+                <li value="3">TREH</li>
+                <li value="4">CUATROH</li>
+            </lol-dropdown>
 
-        <hr>
+            <hr>
 
-        <lol-radiobuttons value="1" class="">
-            <li value="1">UNO</li>
-            <li value="2">DOH</li>
-            <li value="3">TREH</li>
-            <li value="4">CUATROH</li>
-        </lol-radiobuttons>
+            <lol-radiobuttons value="1" class="">
+                <li value="1">UNO</li>
+                <li value="2">DOH</li>
+                <li value="3">TREH</li>
+                <li value="4">CUATROH</li>
+            </lol-radiobuttons>
 
-        <hr>
+            <hr>
 
-        <lol-textbox>
-            <input class="lol-textbox" type="text" placeholder="XD">
-            <input class="lol-textbox" type="text" placeholder="XD" disabled>
-        </lol-textbox>
+            <lol-textbox>
+                <input class="lol-textbox" type="text" placeholder="XD">
+                <input class="lol-textbox" type="text" placeholder="XD" disabled>
+            </lol-textbox>
 
-        <hr>
+            <hr>
 
-        <lol-progressbar id="pb" class="percentage" style="width: 300px;" value="1"></lol-progressbar>
+            <lol-progressbar id="pb" class="percentage zero-hide" style="width: 600px;" value="1"></lol-progressbar>
 
-        <hr>
+            <hr>
 
-        <lol-seekbar id="sb">
-            <div class="line"></div>
-            <div class="thumb"></div>
-        </lol-seekbar>
+            <input type="range" class="lol-seekbar" id="penesote" value="3"></input>
 
-        <hr>
+            <hr>
 
-        <lol-round-button>X</lol-round-button>
+            <lol-round-button>X</lol-round-button>
 
+        </div>
     </div>
 
 
 
-    <script src="./index.js"></script>
 </body>
 
 </html>
