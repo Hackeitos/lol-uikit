@@ -2,16 +2,10 @@ import "./lib/attrchange.js";
 
 let splitPath = $("#lol-script").first().attr("src").split("/");
 splitPath.pop();
-let root = ""; //Needed to know where the lol-uikit folder is relative to the HTML
+let root = ""; // Path to the lol-uikit folder relative to the HTML
 splitPath.forEach(element => { root += element + "/" });
 
-
 // INITIALIZATION AT THE END. GO CHECK OUT THE LAST LINE
-
-/*$("html").css("--seekbar", "url(\"" + "img/seekbar.png\")");
-$("html").css("--seekbar-hover", "url(\"" + "img/seekbar-hover.png\")");
-$("html").css("--seekbar-click", "url(\"" + "img/seekbar-click.png\")");
-$("html").css("--seekbar-disabled", "url(\"" + "img/seekbar-disabled.png\")");*/
 
 // SOME USEFUL FUNCTIONS: ////////////////////////////////////////////////////////////////////////////////////
 

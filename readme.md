@@ -21,7 +21,7 @@ These just stylize already existing controls. To theme them just add the class t
 
 Now due to limitations in design, I couldn't fully customize some controls so I had to implement them by myself.
 All functionality is written by myself, so if you see any bug, please open an issue.
-All these controls cannot bedisabled with the `disabled` attribute. Instead you have to add `class="disabled"` to disable them.
+All these controls cannot be disabled with the `disabled` attribute. Instead you have to add `class="disabled"` to disable them.
 All buttons have the same logic behind.
 
 ## Yellow button
@@ -62,20 +62,22 @@ All buttons have the same logic behind.
 ## Radio buttons
 
 ```HTML
-<lol-radiobuttons value="1" class="">
+<lol-radiobuttons value="1">
     <li value="[value]">[html]</li>
     ...
 </lol-radiobuttons>
 ```
 
 - Each `li` is an option that has class `selected` when selected. It is recommended to use the `value` attribute though.
+- Options can be disabled individually.
+- Disabling the `lol-radiobuttons` element will disable all options.
 - Attributes:
     - `value`: Will change to the value of the selected option. Goes both ways.
 
 ## Progressbar
 
 ```HTML
-<lol-progressbar class="percentage zero-hide" value="1"></lol-progressbar>
+<lol-progressbar class="percentage zero-hide no-tip" value="1"></lol-progressbar>
 ```
 
 - You can change the height, but it may lead to weird layouts.
@@ -86,8 +88,11 @@ All buttons have the same logic behind.
 - Classes:
     - `percentage`: Show a label in the middle which shows the progress in percentage.
     - `zero-hide`: Keep progressbar empty when value is 0. If not set you will see a thin blue line at the left when `value` is 0.
+    - `no-tip`: Hide the shining tip.
 
 # Styles
+
+Classes you can add to anything to theme different elements inside them.
 
 ## Scrollbars
 

@@ -482,6 +482,10 @@
         transform: scale(3.8) translate(-27.2%, 4%);
     }
     
+    lol-progressbar.no-tip>video.tip {
+        display: none !important;
+    }
+    
     lol-progressbar>video.back {
         width: 100%;
         height: 100%;
