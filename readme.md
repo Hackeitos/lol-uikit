@@ -15,7 +15,7 @@ Please note the `type="module"` and `id="lol-script"` attributes. Things may not
 
 # Demo
 
-Try a demo by opening the [index.html](./index.html) file.
+Try a demo by opening the [index.html](./index.html) file. You may want to NOT open it by `file:///` because some browsers may block script loading.
 
 # Wrappers
 
