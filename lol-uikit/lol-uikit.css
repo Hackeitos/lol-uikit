@@ -564,11 +564,10 @@
         background-size: calc(100% - 32px) 2px;
     }
     /*
-    LABELS
+    TEXT
 */
     
-    lol-label {
-        display: inline-flex;
+    .lol-text {
         font-family: "beaufort-regular";
         color: #8C897C;
     }

@@ -40,8 +40,6 @@ export default class LolUiKit {
 
     static init() {
 
-        // INITIALIZE FIRST THING ANIMATED BACKGROUND BECAUSE IT MOVES THINGS AROUND AND CAN LEAD TO BUGGY STUFF IF DONE LATER
-
 
 
 
@@ -60,11 +58,6 @@ export default class LolUiKit {
             element.empty();
             element.prepend(video, container);
         });
-
-
-
-
-        // CONTROLS: ///////////////////////////////////////////////////////////////////
 
 
 
@@ -198,9 +191,6 @@ export default class LolUiKit {
             videoBack.prop("loop", true);
 
             spanPercentage.html("&ZeroWidthSpace;");
-            //spanPercentage.css("margin-top", ((progressbar.height() - spanPercentage.height()) / 2));
-
-
 
             let updateProgressBar = async function(percentage = null) {
                 percentage = percentage || progressbar.attr("value");
@@ -222,14 +212,7 @@ export default class LolUiKit {
             videoBack.attr("src", root + "media/pb-back.webm");
             videoBack.on("loadeddata", () => updateProgressBar());
         });
-
-
-
-        // OTHERS: ///////////////////////////////////////////////////////////////////////////////////////////
-
-
     }
-
 }
 
 LolUiKit.init() // YOU CAN COMMENT THIS LINE TO MANUALLY INITIALIZE LATER ALL lol-* ITEMS BY YOURSELF
