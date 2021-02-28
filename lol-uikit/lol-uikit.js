@@ -123,6 +123,7 @@ export default class LolUiKit {
                 "value": (value) => {
                     let newHTML = optionsContainer.children(`li[value=${value}]`).html();
                     if (newHTML) textSpan.html(newHTML);
+                    else if (value != "") dropdown.attr("value", "");
                 },
 
                 "max-height": (value) => {

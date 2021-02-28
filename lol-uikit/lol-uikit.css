@@ -258,7 +258,6 @@
         color: white;
         display: none;
         background: #010A13;
-        width: inherit;
         border: 2px solid;
         border-image-slice: 1;
         border-image-source: linear-gradient(#473814, #695625);
