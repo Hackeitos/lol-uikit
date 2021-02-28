@@ -74,6 +74,7 @@ All buttons have the same logic behind.
 - Attributes:
     - `value`: Will change to the value of the selected option. Goes both ways.
     - `text`: Initial text. Useful for things like "Pick one".
+- If you want to add items with js you must add them to a `options-container` child that is created when the page loads.
 
 ## Radio buttons
 
