@@ -1,6 +1,18 @@
 # lol-uikit
 Basic HTML implementation of League of Legends-like controls.
 
+# How to implement
+
+Simply copy the lol-uikit folder to your project and add this to your HTML:
+
+```HTML
+<link rel="stylesheet" href=".../lol-uikit/lol-uikit.css">
+<script src=".../lol-uikit/lib/jquery.js"></script>
+<script src=".../lol-uikit/lol-uikit.js" type="module" id="lol-script"></script>
+```
+
+Please note the `type="module"` and `id="lol-script"` attributes. Things may not work correctly if you don't set these attributes correctly.
+
 # Wrappers
 
 These just stylize already existing controls. To theme them just add the class to them.

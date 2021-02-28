@@ -22,12 +22,15 @@ function bindAttrs(element, callbacks) {
         //event.attributeName - Name of the attribute modified
         //event.oldValue      - Previous value of the modified attribute
         //event.newValue      - New value of the modified attribute
-        callback: function(event) {
+        callback: function (event) {
             let attrCallback = callbacks[event.attributeName];
             if (attrCallback) attrCallback(event.newValue);
         }
     });
 }
+
+
+// THE CLASS: ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 export default class LolUiKit {
@@ -37,7 +40,7 @@ export default class LolUiKit {
 
 
 
-        $(".lol-bg-animated").each(function() {
+        $(".lol-bg-animated").each(function () {
             let element = $(this);
             let content = element.html();
             let container = $(document.createElement("div"));
@@ -56,7 +59,7 @@ export default class LolUiKit {
 
 
 
-        $("lol-button, lol-transparent-button, lol-round-button").each(function() {
+        $("lol-button, lol-transparent-button, lol-round-button").each(function () {
             let button = $(this);
             forceTabIndex(button);
             button.on("click", (e) => { if (button.hasClass("disabled")) e.stopImmediatePropagation(); });
@@ -65,7 +68,7 @@ export default class LolUiKit {
 
 
 
-        $("lol-dropdown").each(function() {
+        $("lol-dropdown").each(function () {
             let dropdown = $(this);
 
             forceTabIndex(dropdown);
@@ -81,10 +84,10 @@ export default class LolUiKit {
             optionsContainer.addClass("lol-scrollbar");
             dropdown.append(optionsContainer);
 
-            dropdown.children("li").each(function() {
+            dropdown.children("li").each(function () {
                 let option = $(this);
 
-                option.on("click", function(event) {
+                option.on("click", function (event) {
                     event.stopImmediatePropagation();
                     dropdown.removeClass("open");
                     dropdown.attr("value", option.attr("value"));
@@ -93,11 +96,11 @@ export default class LolUiKit {
                 optionsContainer.append(option);
             });
 
-            dropdown.on("click", function() {
+            dropdown.on("click", function () {
                 if (!dropdown.hasClass("disabled")) dropdown.toggleClass("open");
             });
 
-            dropdown.on("focusout", function() {
+            dropdown.on("focusout", function () {
                 dropdown.removeClass("open");
             });
 
@@ -122,12 +125,12 @@ export default class LolUiKit {
 
 
 
-        $("lol-checkbox").each(function() {
+        $("lol-checkbox").each(function () {
             let checkbox = $(this);
 
             checkbox.html(`<img><span>${checkbox.html()}</span>`);
 
-            checkbox.on("click", function() {
+            checkbox.on("click", function () {
                 if (checkbox.hasClass("disabled")) return;
 
                 checkbox.toggleClass("checked");
@@ -138,14 +141,14 @@ export default class LolUiKit {
 
 
 
-        $("lol-radiobuttons").each(function() {
+        $("lol-radiobuttons").each(function () {
             let radiocontainer = $(this);
 
-            radiocontainer.children("li").each(function() {
+            radiocontainer.children("li").each(function () {
                 let option = $(this);
                 option.html(`<img><span>${$(this).html()}</span>`);
 
-                option.on("click", function() {
+                option.on("click", function () {
                     if (option.hasClass("disabled") || radiocontainer.hasClass("disabled")) return;
 
                     radiocontainer.children("li").removeClass("checked");
@@ -164,7 +167,7 @@ export default class LolUiKit {
         });
 
 
-        $("lol-progressbar").each(function() {
+        $("lol-progressbar").each(function () {
             let progressbar = $(this);
             progressbar.empty();
 
@@ -186,7 +189,7 @@ export default class LolUiKit {
 
             spanPercentage.html("&ZeroWidthSpace;");
 
-            let updateProgressBar = async function(percentage = null) {
+            let updateProgressBar = async function (percentage = null) {
                 percentage = percentage || progressbar.attr("value");
                 percentage = percentage * 100;
                 if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 100) percentage = 0;
