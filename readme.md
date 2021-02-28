@@ -13,6 +13,10 @@ Simply copy the lol-uikit folder to your project and add this to your HTML:
 
 Please note the `type="module"` and `id="lol-script"` attributes. Things may not work correctly if you don't set these attributes correctly.
 
+# Demo
+
+Try a demo by opening the [index.html](./index.html) file.
+
 # Wrappers
 
 These just stylize already existing controls. To theme them just add the class to them.
