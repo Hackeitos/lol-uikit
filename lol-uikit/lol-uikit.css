@@ -239,9 +239,14 @@
         outline: none;
     }
     
+    lol-dropdown>span {
+        margin-right: 15px;
+    }
+    
     lol-dropdown>img {
         content: var(--up-down-arrow);
-        margin-left: 5px;
+        right: 5px;
+        position: absolute;
     }
     
     lol-dropdown.disabled>img {
