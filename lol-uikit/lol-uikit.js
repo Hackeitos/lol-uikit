@@ -22,7 +22,7 @@ function bindAttrs(element, callbacks) {
         //event.attributeName - Name of the attribute modified
         //event.oldValue      - Previous value of the modified attribute
         //event.newValue      - New value of the modified attribute
-        callback: function (event) {
+        callback: function(event) {
             let attrCallback = callbacks[event.attributeName];
             if (attrCallback) attrCallback(event.newValue);
         }
@@ -36,180 +36,177 @@ function bindAttrs(element, callbacks) {
 export default class LolUiKit {
 
     static init() {
+        $(".lol-bg-animated").not(".manual-init").each(this.initAnimatedBg);
 
+        $("lol-button, lol-transparent-button, lol-round-button").not(".manual-init").each(this.initButton);
 
+        $("lol-dropdown").not(".manual-init").each(this.initDropdown);
 
+        $("lol-checkbox").not(".manual-init").each(this.initCheckbox);
 
-        $(".lol-bg-animated").each(function () {
-            let element = $(this);
-            let content = element.html();
-            let container = $(document.createElement("div"));
-            let video = $(document.createElement("video"));
-            video.attr("src", root + "media/background-ambient.webm");
-            video.prop("autoplay", true);
-            video.prop("muted", true);
-            video.prop("loop", true);
+        $("lol-radiobuttons").not(".manual-init").each(this.initRadioButtons);
 
-            container.html(content);
+        $("lol-progressbar").not(".manual-init").each(this.initProgressBar);
+    }
 
-            element.empty();
-            element.prepend(video, container);
-        });
+    static initAnimatedBg() {
+        let element = $(this);
+        let content = element.html();
+        let container = $(document.createElement("div"));
+        let video = $(document.createElement("video"));
+        video.attr("src", root + "media/background-ambient.webm");
+        video.prop("autoplay", true);
+        video.prop("muted", true);
+        video.prop("loop", true);
 
+        container.html(content);
 
+        element.empty();
+        element.prepend(video, container);
+    }
 
+    static initButton() {
+        let button = $(this);
+        forceTabIndex(button);
+        button.on("click", (e) => { if (button.hasClass("disabled")) e.stopImmediatePropagation(); });
+    }
 
-        $("lol-button, lol-transparent-button, lol-round-button").each(function () {
-            let button = $(this);
-            forceTabIndex(button);
-            button.on("click", (e) => { if (button.hasClass("disabled")) e.stopImmediatePropagation(); });
-        });
+    static initDropdown() {
+        let dropdown = $(this);
 
+        forceTabIndex(dropdown);
 
+        let textSpan = $(document.createElement("span"));
+        textSpan.html("&ZeroWidthSpace;");
+        dropdown.append(textSpan);
 
+        let img = $(document.createElement("img"));
+        dropdown.append(img);
 
-        $("lol-dropdown").each(function () {
-            let dropdown = $(this);
+        let optionsContainer = $(document.createElement("options-container"));
+        optionsContainer.addClass("lol-scrollbar");
+        dropdown.append(optionsContainer);
 
-            forceTabIndex(dropdown);
+        dropdown.children("li").each(function() {
+            let option = $(this);
 
-            let textSpan = $(document.createElement("span"));
-            textSpan.html("&ZeroWidthSpace;");
-            dropdown.append(textSpan);
-
-            let img = $(document.createElement("img"));
-            dropdown.append(img);
-
-            let optionsContainer = $(document.createElement("options-container"));
-            optionsContainer.addClass("lol-scrollbar");
-            dropdown.append(optionsContainer);
-
-            dropdown.children("li").each(function () {
-                let option = $(this);
-
-                option.on("click", function (event) {
-                    event.stopImmediatePropagation();
-                    dropdown.removeClass("open");
-                    dropdown.attr("value", option.attr("value"));
-                });
-
-                optionsContainer.append(option);
-            });
-
-            dropdown.on("click", function () {
-                if (!dropdown.hasClass("disabled")) dropdown.toggleClass("open");
-            });
-
-            dropdown.on("focusout", function () {
+            option.on("click", function(event) {
+                event.stopImmediatePropagation();
                 dropdown.removeClass("open");
+                dropdown.attr("value", option.attr("value"));
             });
 
-            bindAttrs(dropdown, {
-                "text": (value) => {
-                    textSpan.html(value ? value : "&ZeroWidthSpace;");
-                    dropdown.removeAttr("value");
-                },
+            optionsContainer.append(option);
+        });
 
-                "value": (value) => {
-                    let newHTML = optionsContainer.children(`li[value=${value}]`).html();
-                    if (newHTML) textSpan.html(newHTML);
-                    else if (value != "") dropdown.attr("value", "");
-                },
+        dropdown.on("click", function() {
+            if (!dropdown.hasClass("disabled")) dropdown.toggleClass("open");
+        });
 
-                "max-height": (value) => {
-                    optionsContainer.css("max-height", value);
-                }
-            });
+        dropdown.on("focusout", function() {
+            dropdown.removeClass("open");
         });
 
 
+        bindAttrs(dropdown, {
+            "text": (value) => {
+                textSpan.html(value ? value : "&ZeroWidthSpace;");
+                dropdown.removeAttr("value");
+            },
 
+            "value": (value) => {
+                let newHTML = optionsContainer.children(`li[value="${value}"]`).html();
+                if (newHTML) textSpan.html(newHTML);
+                else if (value != "") dropdown.attr("value", "");
+            },
 
-        $("lol-checkbox").each(function () {
-            let checkbox = $(this);
+            "max-height": (value) => {
+                optionsContainer.css("max-height", value);
+            }
+        });
+    }
 
-            checkbox.html(`<img><span>${checkbox.html()}</span>`);
+    static initCheckbox() {
+        let checkbox = $(this);
 
-            checkbox.on("click", function () {
-                if (checkbox.hasClass("disabled")) return;
+        checkbox.html(`<img><span>${checkbox.html()}</span>`);
 
-                checkbox.toggleClass("checked");
-                checkbox.trigger("change", checkbox.hasClass("checked"));
+        checkbox.on("click", function() {
+            if (checkbox.hasClass("disabled")) return;
+
+            checkbox.toggleClass("checked");
+            checkbox.trigger("change", checkbox.hasClass("checked"));
+        });
+    }
+
+    static initRadioButtons() {
+        let radiocontainer = $(this);
+
+        radiocontainer.children("li").each(function() {
+            let option = $(this);
+            option.html(`<img><span>${$(this).html()}</span>`);
+
+            option.on("click", function() {
+                if (option.hasClass("disabled") || radiocontainer.hasClass("disabled")) return;
+
+                radiocontainer.children("li").removeClass("checked");
+                option.addClass("checked");
+                radiocontainer.attr("value", option.attr("value"));
+                radiocontainer.trigger("change");
             });
         });
 
+        bindAttrs(radiocontainer, {
+            "value": (value) => {
+                radiocontainer.children("radio-button").removeClass("checked");
+                radiocontainer.children(`radio-button[value=${value}]`).addClass("checked");
+            }
+        });
+    }
+
+    static initProgressBar() {
+        let progressbar = $(this);
+        progressbar.empty();
+
+        let videoTip = $(document.createElement("video"));
+        let videoBack = $(document.createElement("video"));
+        let spanPercentage = $(document.createElement("span"));
+        progressbar.append(videoBack, videoTip, spanPercentage);
+
+        videoTip.addClass("tip");
+        videoTip.attr("src", root + "media/pb-long-tip.webm");
+        videoTip.prop("autoplay", true);
+        videoTip.prop("muted", true);
+        videoTip.prop("loop", true);
+
+        videoBack.addClass("back");
+        videoBack.prop("autoplay", true);
+        videoBack.prop("muted", true);
+        videoBack.prop("loop", true);
+
+        spanPercentage.html("&ZeroWidthSpace;");
+
+        let updateProgressBar = async function(percentage = null) {
+            percentage = percentage || progressbar.attr("value");
+            percentage = percentage * 100;
+            if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 100) percentage = 0;
+
+            spanPercentage.html(parseInt(percentage) + "%");
+            videoTip.css("left", percentage + "%");
+            videoBack.css("clip-path", `inset(0px ${100 - percentage}% 0px 0px)`);
+        };
 
 
-
-        $("lol-radiobuttons").each(function () {
-            let radiocontainer = $(this);
-
-            radiocontainer.children("li").each(function () {
-                let option = $(this);
-                option.html(`<img><span>${$(this).html()}</span>`);
-
-                option.on("click", function () {
-                    if (option.hasClass("disabled") || radiocontainer.hasClass("disabled")) return;
-
-                    radiocontainer.children("li").removeClass("checked");
-                    option.addClass("checked");
-                    radiocontainer.attr("value", option.attr("value"));
-                    radiocontainer.trigger("change");
-                });
-            });
-
-            bindAttrs(radiocontainer, {
-                "value": (value) => {
-                    radiocontainer.children("radio-button").removeClass("checked");
-                    radiocontainer.children(`radio-button[value=${value}]`).addClass("checked");
-                }
-            });
+        bindAttrs(progressbar, {
+            "value": (value) => updateProgressBar(value),
+            "hue": (value) => progressbar.css("--hue", value),
+            "saturation": (value) => progressbar.css("--saturation", value)
         });
 
-
-        $("lol-progressbar").each(function () {
-            let progressbar = $(this);
-            progressbar.empty();
-
-            let videoTip = $(document.createElement("video"));
-            let videoBack = $(document.createElement("video"));
-            let spanPercentage = $(document.createElement("span"));
-            progressbar.append(videoBack, videoTip, spanPercentage);
-
-            videoTip.addClass("tip");
-            videoTip.attr("src", root + "media/pb-long-tip.webm");
-            videoTip.prop("autoplay", true);
-            videoTip.prop("muted", true);
-            videoTip.prop("loop", true);
-
-            videoBack.addClass("back");
-            videoBack.prop("autoplay", true);
-            videoBack.prop("muted", true);
-            videoBack.prop("loop", true);
-
-            spanPercentage.html("&ZeroWidthSpace;");
-
-            let updateProgressBar = async function (percentage = null) {
-                percentage = percentage || progressbar.attr("value");
-                percentage = percentage * 100;
-                if (!percentage || isNaN(percentage) || percentage < 0 || percentage > 100) percentage = 0;
-
-                spanPercentage.html(parseInt(percentage) + "%");
-                videoTip.css("left", percentage + "%");
-                videoBack.css("clip-path", `inset(0px ${100 - percentage}% 0px 0px)`);
-            };
-
-
-            bindAttrs(progressbar, {
-                "value": (value) => updateProgressBar(value),
-                "hue": (value) => progressbar.css("--hue", value),
-                "saturation": (value) => progressbar.css("--saturation", value)
-            });
-
-            videoBack.attr("src", root + "media/pb-back.webm");
-            videoBack.on("loadeddata", () => updateProgressBar());
-        });
+        videoBack.attr("src", root + "media/pb-back.webm");
+        videoBack.on("loadeddata", () => updateProgressBar());
     }
 }
 
-LolUiKit.init() // YOU CAN COMMENT THIS LINE TO MANUALLY INITIALIZE LATER ALL lol-* ITEMS BY YOURSELF
+//$(window).on("load", () => LolUiKit.init()); // YOU CAN COMMENT THIS LINE TO MANUALLY INITIALIZE LATER ALL lol-* ITEMS BY YOURSELF
+LolUiKit.init()
